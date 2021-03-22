@@ -34,7 +34,14 @@ public class StudentService {
         System.out.println("Empty Details");
     }
 
-    //To Update the student Name
+
+    /** This method get three values and
+     *  Iterate the StudentDto class object, then
+     *  check the StudentDto object id and get studentId is equal;
+     *  set name in StudentDto object
+     *  remove the existing data if object id is equal studentId
+     *  add the object data in the list
+     *  */
     public void update_name(int studentId, String studentName, List<StudentDto> students) {
 
         for (StudentDto st_dt : students) {
@@ -42,8 +49,8 @@ public class StudentService {
                 st_dt.setName(studentName);
                 students.removeIf(student -> student.getId() == studentId);
                 students.add(st_dt);
+                break;
             }
-
         }
     }
 
@@ -55,11 +62,13 @@ public class StudentService {
                 st_dt.setAge(studentAge);
                 students.removeIf(student -> student.getId() == studentId);
                 students.add(st_dt);
+                break;
             }
 
         }
     }
-
+    // TO update all data row wise
+    /** */
     public void update_All(int studentId, String studentName, String studentAge, List<StudentDto> students) {
         for (StudentDto st_dt : students) {
             if (st_dt.getId() == studentId) {
@@ -67,6 +76,7 @@ public class StudentService {
                 st_dt.setAge(studentAge);
                 students.removeIf(student -> student.getId() == studentId);
                 students.add(st_dt);
+                break;
             }
 
         }

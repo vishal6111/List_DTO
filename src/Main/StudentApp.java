@@ -108,7 +108,6 @@ public class StudentApp {
                 st_age = sc.next();
 
                 studentResource.update_All(index, st_name,st_age, allstudents);
-                studentResource.update_age(index, st_age, allstudents);
                 allstudents = studentResource.getAllStudent();
                 printStudentDetails(allstudents);
                 update();
