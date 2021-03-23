@@ -15,7 +15,7 @@ public class StudentDto {
     public StudentDto(int id, String name, String age) {
         this.id = id;
         this.name = name;
-        this.age = age;
+        this.age = ages;
     }
 
     /**
@@ -40,7 +40,7 @@ public class StudentDto {
     }
 
     /**
-     * @param id
+     * @param id : id
      */
     public void setId(int id) {
         this.id = id;
