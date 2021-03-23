@@ -6,69 +6,94 @@ import java.util.List;
 
 public class StudentService {
     private List<StudentDto> students;
-    public StudentDto Sd_Obj;
 
-    //TO Save all List Value
+    /**
+     * TO Save all List Value
+     *
+     * @param students : students
+     */
     public StudentService(List<StudentDto> students) {
         this.students = students;
     }
 
-    //TO Show all student details
+    /**
+     * TO Show all student details
+     *
+     * @return students list
+     */
     public List<StudentDto> getAllStudent() {
         return students;
     }
 
-    //To Add the student Details
+    /**
+     * To Add the student Details
+     *
+     * @param student : student
+     */
     public void save(StudentDto student) {
         students.add(student);
     }
 
-    //To Delete the student details by Id
+    /**
+     * To Delete the student details by Id
+     *
+     * @param studentId : studentId
+     */
     public void delete(int studentId) {
         students.removeIf(student -> student.getId() == studentId);
     }
 
-    //To Delete All student details
+    /**
+     * To Delete All student details
+     */
     public void deleteAll() {
         students.removeAll(students);
         System.out.println("Empty Details");
     }
-
-
-    /** This method get three values and
-     *  Iterate the StudentDto class object, then
-     *  check the StudentDto object id and get studentId is equal;
-     *  set name in StudentDto object
-     *  remove the existing data if object id is equal studentId
-     *  add the object data in the list
-     *  */
+    /**
+     * To Update the student name by ID
+     *
+     * @param studentId : studentId
+     * @param studentName : studentName
+     * @param students : students
+     */
     public void update_name(int studentId, String studentName, List<StudentDto> students) {
-
-        for (StudentDto st_dt : students) {
-            if (st_dt.getId() == studentId) {
-                st_dt.setName(studentName);
+        for (StudentDto sdObj : students) {
+            if (sdObj.getId() == studentId) {
+                sdObj.setName(studentName);
                 students.removeIf(student -> student.getId() == studentId);
-                students.add(st_dt);
+                students.add(sdObj);
                 break;
             }
         }
     }
 
-
-    //To Update the student age
+    /**
+     * To Update the student age by Id
+     *
+     * @param studentId : studentId
+     * @param studentAge : studentAge
+     * @param students : students
+     */
     public void update_age(int studentId, String studentAge, List<StudentDto> students) {
-        for (StudentDto st_dt : students) {
-            if (st_dt.getId() == studentId) {
-                st_dt.setAge(studentAge);
+        for (StudentDto sdObj : students) {
+            if (sdObj.getId() == studentId) {
+                sdObj.setAge(studentAge);
                 students.removeIf(student -> student.getId() == studentId);
-                students.add(st_dt);
+                students.add(sdObj);
                 break;
             }
-
         }
     }
-    // TO update all data row wise
-    /** */
+
+    /**
+     * TO update all data row wise by ID
+     *
+     * @param studentId : studentId
+     * @param studentName : studentName
+     * @param studentAge : studentAge
+     * @param students : students
+     */
     public void update_All(int studentId, String studentName, String studentAge, List<StudentDto> students) {
         for (StudentDto st_dt : students) {
             if (st_dt.getId() == studentId) {
@@ -78,8 +103,6 @@ public class StudentService {
                 students.add(st_dt);
                 break;
             }
-
         }
-
     }
 }

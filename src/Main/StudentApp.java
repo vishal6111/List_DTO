@@ -10,17 +10,38 @@ import java.util.Scanner;
 public class StudentApp {
     List<StudentDto> students = new ArrayList<>();
     StudentService studentResource = new StudentService(students);
-    List<StudentDto> allstudents = studentResource.getAllStudent();
+    List<StudentDto> allStudents = studentResource.getAllStudent();
     Scanner sc = new Scanner(System.in);
-
-    //Variables
+    /**
+     * Variables
+     */
     int st_id;
     String st_name;
     String st_age;
     int input;
-    int index;
 
-    //To Add the Details
+    /**
+     * Main Method
+     *
+     * @param args : args
+     */
+    public static void main(String[] args) {
+        StudentApp St_obj = new StudentApp();
+        St_obj.For_records();
+    }
+
+    /**
+     * TO print all the details
+     *
+     * @param allStudents : allStudents
+     */
+    private static void printStudentDetails(List<StudentDto> allStudents) {
+        allStudents.forEach(student -> System.out.println(student.getId() + " " + student.getName() + " " + student.getAge()));
+    }
+
+    /**
+     * To Add the Details
+     */
     public void Add() {
         System.out.println("Enter the Id ");
         st_id = Integer.parseInt(sc.next());
@@ -30,10 +51,12 @@ public class StudentApp {
         st_age = sc.next();
         StudentDto st_obj = new StudentDto(st_id, st_name, st_age);
         students.add(st_obj);
-        printStudentDetails(allstudents);
+        printStudentDetails(allStudents);
     }
 
-    //To delete the record
+    /**
+     * To delete the record
+     */
     public void delete() {
         System.out.println("What you want to delete");
         System.out.println("1. Delete By ID");
@@ -43,17 +66,17 @@ public class StudentApp {
         switch (input) {
             case 1:
                 System.out.println("Which Student you want to delete");
-                printStudentDetails(allstudents);
+                printStudentDetails(allStudents);
                 System.out.println("Enter ID");
                 st_id = Integer.parseInt(sc.next());
                 studentResource.delete(st_id);
-                allstudents = studentResource.getAllStudent();
-                printStudentDetails(allstudents);
+                allStudents = studentResource.getAllStudent();
+                printStudentDetails(allStudents);
                 delete();
                 break;
             case 2:
                 studentResource.deleteAll();
-                allstudents = studentResource.getAllStudent();
+                allStudents = studentResource.getAllStudent();
                 System.out.println("Empty List");
                 delete();
                 break;
@@ -63,7 +86,9 @@ public class StudentApp {
         }
     }
 
-    //To update existing record
+    /**
+     * To update existing record
+     */
     public void update() {
         System.out.println("What you want to Update");
         System.out.println("1. Update Name");
@@ -74,42 +99,42 @@ public class StudentApp {
 
         switch (input) {
             case 1:
-                printStudentDetails(allstudents);
+                printStudentDetails(allStudents);
                 System.out.println("Enter Id");
-                index = sc.nextInt();
+                st_id = sc.nextInt();
                 System.out.println("Enter updated name");
                 st_name = sc.next();
 
-                studentResource.update_name(index, st_name, allstudents);
-                allstudents = studentResource.getAllStudent();
-                printStudentDetails(allstudents);
+                studentResource.update_name(st_id, st_name, allStudents);
+                allStudents = studentResource.getAllStudent();
+                printStudentDetails(allStudents);
                 update();
                 break;
 
             case 2:
-                printStudentDetails(allstudents);
+                printStudentDetails(allStudents);
                 System.out.println("Enter ID");
-                index = sc.nextInt();
+                st_id = sc.nextInt();
                 System.out.println("Enter updated Age");
                 st_age = sc.next();
-                studentResource.update_age(index, st_age, allstudents);
-                allstudents = studentResource.getAllStudent();
-                printStudentDetails(allstudents);
+                studentResource.update_age(st_id, st_age, allStudents);
+                allStudents = studentResource.getAllStudent();
+                printStudentDetails(allStudents);
                 update();
                 break;
 
             case 3:
-                printStudentDetails(allstudents);
+                printStudentDetails(allStudents);
                 System.out.println("Enter ID");
-                index = sc.nextInt();
+                st_id = sc.nextInt();
                 System.out.println("Enter updated name");
                 st_name = sc.next();
                 System.out.println("Enter updated Age");
                 st_age = sc.next();
 
-                studentResource.update_All(index, st_name,st_age, allstudents);
-                allstudents = studentResource.getAllStudent();
-                printStudentDetails(allstudents);
+                studentResource.update_All(st_id, st_name, st_age, allStudents);
+                allStudents = studentResource.getAllStudent();
+                printStudentDetails(allStudents);
                 update();
                 break;
 
@@ -119,13 +144,17 @@ public class StudentApp {
         }
     }
 
-    //TO show the all details
+    /**
+     * TO show the all details
+     */
     public void show() {
         List<StudentDto> allstudents = studentResource.getAllStudent();
         printStudentDetails(allstudents);
     }
 
-    //To Update student details in List
+    /**
+     * To Update student details in List
+     */
     public void For_records() {
         System.out.println("Enter a Value Which you want to perform operation");
         System.out.println("1. Insert Value");
@@ -152,16 +181,5 @@ public class StudentApp {
                 For_records();
                 break;
         }
-    }
-
-    //  Main Method
-    public static void main(String[] args) {
-        StudentApp St_obj = new StudentApp();
-        St_obj.For_records();
-    }
-
-    //TO print all the details
-    private static void printStudentDetails(List<StudentDto> allstudents) {
-        allstudents.forEach(student -> System.out.println(student.getId() + " " + student.getName() + " " + student.getAge()));
     }
 }
